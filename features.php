@@ -128,17 +128,8 @@
     </style>
 </head>
 <body>
-<header class="header">
-    <div class="logo">
-        <h2>LOOKBOOK</h2>
-    </div>
-    <nav class="nav-links">
-        <a href="/">Home</a>
-        <a href="test.php">Test</a>
-        <a href="features.php">Features</a>
-        <a href="about-us.php">About Us</a>
-    </nav>
-</header>
+<?php include 'header.php'; ?>
+
 
 <section class="hero">
     <div class="hero-content">

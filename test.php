@@ -20,8 +20,22 @@ $itemTypes = array("ALL", "Shirts", "Pants", "Dresses", "Shoes", "Accessories");
         }
 
         .header {
-            padding: 20px;
+            background-color: white;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             border-bottom: 1px solid #eee;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: black;
         }
 
         .logo {
@@ -90,15 +104,7 @@ $itemTypes = array("ALL", "Shirts", "Pants", "Dresses", "Shoes", "Accessories");
     </style>
 </head>
 <body>
-<div class="header">
-    <img src="path_to_logo.png" alt="Lookbook" class="logo">
-    <nav class="nav">
-        <a href="home">Home</a>
-        <a href="test">Test</a>
-        <a href="features">Features</a>
-        <a href="about">About Us</a>
-    </nav>
-</div>
+<?php include 'header.php'; ?>
 
 <div class="container">
     <h1>Search Your Closet</h1>
