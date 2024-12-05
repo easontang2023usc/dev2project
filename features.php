@@ -134,6 +134,7 @@
     </div>
     <nav class="nav-links">
         <a href="/">Home</a>
+        <a href="test.php">Test</a>
         <a href="features.php">Features</a>
         <a href="about-us.php">About Us</a>
     </nav>
