@@ -122,7 +122,7 @@ $features = [
         <p class="feature-text">
             The Lookbook <span class="highlight">digitally organizes</span> your wardrobe, enabling quick and easy searches.
         </p>
-        <img src="images/closet.jpg" alt="Digital Closet Organization" class="closet-image">
+        <img src="Public/image.png" alt="Digital Closet Organization" class="closet-image">
     </section>
 
     <div class="features-grid">
