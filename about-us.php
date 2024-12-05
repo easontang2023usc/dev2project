@@ -197,8 +197,8 @@ $faqs = [
     </div>
     <nav class="nav-links">
         <a href="/">Home</a>
-        <a href="/features.php">Features</a>
-        <a href="/about.php">About Us</a>
+        <a href="features.php">Features</a>
+        <a href="about-us.php">About Us</a>
     </nav>
 </header>
 
