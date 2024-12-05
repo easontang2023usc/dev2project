@@ -15,24 +15,6 @@
             font-family: Arial, sans-serif;
         }
 
-        .header {
-            background-color: white;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: black;
-        }
-
         .hero {
             position: relative;
             height: 60vh;

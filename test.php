@@ -19,40 +19,6 @@ $itemTypes = array("ALL", "Shirts", "Pants", "Dresses", "Shoes", "Accessories");
             padding: 0;
         }
 
-        .header {
-            background-color: white;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #eee;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: black;
-        }
-
-        .logo {
-            max-width: 150px;
-        }
-
-        .nav {
-            float: right;
-            margin-top: -40px;
-        }
-
-        .nav a {
-            margin-left: 20px;
-            text-decoration: none;
-            color: #333;
-        }
-
         .container {
             max-width: 800px;
             margin: 0 auto;
