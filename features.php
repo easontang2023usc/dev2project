@@ -19,7 +19,7 @@
             position: relative;
             height: 60vh;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-            url('/api/placeholder/1200/800');
+            url('Public/Background Image.png');
             background-size: cover;
             background-position: center;
             display: flex;
@@ -127,17 +127,17 @@
         [
             'title' => 'Sort & Filter',
             'description' => 'Effortlessly navigate your wardrobe with our sort and filter tools. Find exactly what you need by filtering items by type, color, size, occasion, or custom tags. Our intuitive interface lets you sort visually, making it easy to spot your favorite items or discover hidden gems. With advanced search and quick actions, managing your wardrobe has never been this efficient.',
-            'image' => '/api/placeholder/600/400'
+            'image' => 'Public/Image 2.png'
         ],
         [
             'title' => 'Manage',
             'description' => 'Take control of your wardrobe with a streamlined digital catalog. Easily upload images, add details like size, color, and occasion, and track outfit combinations or wear history. Keep tabs on your items\' condition, lifecycle, and even get reminders for neglected pieces. Whether you\'re updating your inventory or planning your next outfit, our tools help you stay organized and intentional about your fashion choices.',
-            'image' => '/api/placeholder/600/400'
+            'image' => 'Public/Image 3.png'
         ],
         [
             'title' => 'Recommend',
             'description' => 'Maximize your wardrobe\'s potential with personalized recommendations tailored to your lifestyle. Discover outfit combinations for various occasions, from casual outings to formal events, and get tips on how to make the most of your existing wardrobe. Identify gaps in your collection and receive suggestions for seasonal updates to create a versatile and functional wardrobe.',
-            'image' => '/api/placeholder/600/400'
+            'image' => 'Public/Image 4.png'
         ]
     ];
 
