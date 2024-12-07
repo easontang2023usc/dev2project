@@ -74,7 +74,7 @@
         }
 
         .signup-btn {
-            background-color: #FFD700;
+            background-color: #a3c7f1;
             color: black;
             padding: 0.8rem 2rem;
             border: none;
@@ -85,7 +85,7 @@
         }
 
         .signup-btn:hover {
-            background-color: #ffc107;
+            background-color: #5b7ea1;
         }
 
         footer {

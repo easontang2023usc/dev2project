@@ -38,5 +38,6 @@
         <a href="test.php">Test</a>
         <a href="features.php">Features</a>
         <a href="about-us.php">About Us</a>
+        <a href="signup.php">Sign Up</a>
     </nav>
 </header>
