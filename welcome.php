@@ -1,12 +1,14 @@
 <?php
-// signup.php
+
+session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up - LookBook</title>
+    <title>Welcome - LookBook</title>
     <style>
         * {
             margin: 0;
@@ -18,7 +20,7 @@
         .hero {
             position: relative;
             height: 50vh;
-            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
             url('/api/placeholder/1200/800');
             background-size: cover;
             background-position: center;
@@ -39,52 +41,38 @@
             margin-bottom: 1rem;
         }
 
-        .signup-section {
+        .welcome-section {
             padding: 4rem 2rem;
-            max-width: 600px;
+            max-width: 800px;
             margin: 0 auto;
             background: #f9f9f9;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .signup-section h2 {
             text-align: center;
-            margin-bottom: 2rem;
-            font-size: 2rem;
         }
 
-        .signup-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1.5rem;
+        .welcome-section h2 {
+            margin-bottom: 1.5rem;
+            font-size: 2.5rem;
         }
 
-        .signup-form input {
-            padding: 1rem;
-            font-size: 1rem;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            outline: none;
+        .welcome-section p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
         }
 
-        .signup-form input:focus {
-            border-color: rgba(182, 221, 246, 0.49);
-            box-shadow: 0 0 5px rgba(145, 206, 245, 0.49);
-        }
-
-        .signup-btn {
+        .dashboard-link {
+            text-decoration: none;
+            color: white;
             background-color: #a3c7f1;
-            color: black;
             padding: 0.8rem 2rem;
-            border: none;
             border-radius: 5px;
             font-size: 1.1rem;
-            cursor: pointer;
-            margin-top: 1rem;
+            transition: background-color 0.3s ease;
         }
 
-        .signup-btn:hover {
+        .dashboard-link:hover {
             background-color: #5b7ea1;
         }
 
@@ -101,20 +89,14 @@
 
 <section class="hero">
     <div class="hero-content">
-        <h1>Join LookBook Today</h1>
-        <p>Create an account to unlock all features and manage your wardrobe effortlessly.</p>
+        <h1>Welcome to LookBook!</h1>
+        <p>Your wardrobe management journey begins here.</p>
     </div>
 </section>
 
-<section class="signup-section">
-    <h2>Sign Up</h2>
-    <form class="signup-form" action="signupprocess.php" method="post">
-        <input type="text" name="username" placeholder="Username" required>
-        <input type="email" name="email" placeholder="Email Address" required>
-        <input type="password" name="password" placeholder="Password" required>
-        <input type="password" name="confirm_password" placeholder="Confirm Password" required>
-        <button type="submit" class="signup-btn">Sign Up</button>
-    </form>
+<section class="welcome-section">
+    <h2>Hello, Welcome!</h2>
+    <p>Thank you for signing up. You can now explore our features to manage your wardrobe effortlessly.</p>
 </section>
 
 <footer>

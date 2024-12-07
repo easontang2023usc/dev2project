@@ -1,4 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="PublishConfigData" filePermissions="493" folderPermissions="493" remoteFilesAllowedToDisappearOnAutoupload="false" />
+  <component name="PublishConfigData" serverName="https://webdev.iyaserver.com" filePermissions="493" folderPermissions="493" remoteFilesAllowedToDisappearOnAutoupload="false" confirmBeforeUploading="false">
+    <option name="confirmBeforeUploading" value="false" />
+    <serverData>
+      <paths name="https://webdev.iyaserver.com">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/public_html/acad276/wardrobe" local="$PROJECT_DIR$" web="/acad276/wardrobe" />
+          </mappings>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
 </project>
