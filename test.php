@@ -1,9 +1,53 @@
 <?php
-// Initialize any required variables
+// Initialize database connection
+$conn = new mysqli("webdev.iyaserver.com", "mparthas", "AcadDev_Parthasarathy_8846782870", "mparthas_wardrobe");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Initialize filter arrays
 $sizes = array("ALL", "XS", "S", "M", "L", "XL", "XXL");
 $colors = array("ALL", "Black", "White", "Blue", "Red", "Green", "Yellow");
 $brands = array("ALL", "Nike", "Adidas", "Zara", "H&M", "Uniqlo");
 $itemTypes = array("ALL", "Shirts", "Pants", "Dresses", "Shoes", "Accessories");
+
+// Process filter selections
+$size = isset($_GET['size']) ? $_GET['size'] : 'ALL';
+$color = isset($_GET['color']) ? $_GET['color'] : 'ALL';
+$brand = isset($_GET['brand']) ? $_GET['brand'] : 'ALL';
+$item_type = isset($_GET['item_type']) ? $_GET['item_type'] : 'ALL';
+
+// Start with base query
+$sql = "SELECT * FROM items WHERE 1=1";
+$params = array();
+$types = "";
+
+// Add conditions only for non-'ALL' selections
+if ($size !== 'ALL') {
+    $sql .= " AND size = ?";
+    $params[] = $size;
+    $types .= "s";
+}
+if ($color !== 'ALL') {
+    $sql .= " AND color = ?";
+    $params[] = $color;
+    $types .= "s";
+}
+if ($brand !== 'ALL') {
+    $sql .= " AND brand = ?";
+    $params[] = $brand;
+    $types .= "s";
+}
+if ($item_type !== 'ALL') {
+    $sql .= " AND item_type = ?";
+    $params[] = $item_type;
+    $types .= "s";
+}
+
+// For debugging - remove in production
+// echo "SQL Query: " . $sql . "<br>";
+// echo "Parameters: " . print_r($params, true) . "<br>";
+// echo "Types: " . $types . "<br>";
 ?>
 
 <!DOCTYPE html>
@@ -76,15 +120,13 @@ $itemTypes = array("ALL", "Shirts", "Pants", "Dresses", "Shoes", "Accessories");
     <h1>Search Your Closet</h1>
     <p>Find exactly what you're looking for with filters by color, size, brand, item type, and more!</p>
 
-    <h3>Try it out!</h3>
-
     <div class="search-form">
-        <form method="POST" action="">
+        <form method="GET" action="">
             <div class="form-group">
                 <label for="size">Size:</label>
                 <select name="size" id="size">
-                    <?php foreach($sizes as $size): ?>
-                        <option value="<?php echo $size; ?>"><?php echo $size; ?></option>
+                    <?php foreach($sizes as $s): ?>
+                        <option value="<?php echo $s; ?>" <?php echo ($s == $size) ? 'selected' : ''; ?>><?php echo $s; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -92,8 +134,8 @@ $itemTypes = array("ALL", "Shirts", "Pants", "Dresses", "Shoes", "Accessories");
             <div class="form-group">
                 <label for="color">Color:</label>
                 <select name="color" id="color">
-                    <?php foreach($colors as $color): ?>
-                        <option value="<?php echo $color; ?>"><?php echo $color; ?></option>
+                    <?php foreach($colors as $c): ?>
+                        <option value="<?php echo $c; ?>" <?php echo ($c == $color) ? 'selected' : ''; ?>><?php echo $c; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -101,8 +143,8 @@ $itemTypes = array("ALL", "Shirts", "Pants", "Dresses", "Shoes", "Accessories");
             <div class="form-group">
                 <label for="brand">Brand:</label>
                 <select name="brand" id="brand">
-                    <?php foreach($brands as $brand): ?>
-                        <option value="<?php echo $brand; ?>"><?php echo $brand; ?></option>
+                    <?php foreach($brands as $b): ?>
+                        <option value="<?php echo $b; ?>" <?php echo ($b == $brand) ? 'selected' : ''; ?>><?php echo $b; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
@@ -110,15 +152,40 @@ $itemTypes = array("ALL", "Shirts", "Pants", "Dresses", "Shoes", "Accessories");
             <div class="form-group">
                 <label for="item_type">Item Type:</label>
                 <select name="item_type" id="item_type">
-                    <?php foreach($itemTypes as $type): ?>
-                        <option value="<?php echo $type; ?>"><?php echo $type; ?></option>
+                    <?php foreach($itemTypes as $t): ?>
+                        <option value="<?php echo $t; ?>" <?php echo ($t == $item_type) ? 'selected' : ''; ?>><?php echo $t; ?></option>
                     <?php endforeach; ?>
                 </select>
             </div>
+
+            <button type="submit" style="margin-top: 20px; padding: 10px 20px;">Search</button>
         </form>
     </div>
 
-    <p>Feel free to explore our interactive digital wardrobe, where you can add, edit, or delete clothing items to suit your needs!</p>
+    <div class="results-grid">
+        <?php
+        // Execute the prepared query
+        $stmt = $conn->prepare($sql);
+        if (!empty($params)) {
+            $stmt->bind_param($types, ...$params);
+        }
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        while ($item = $result->fetch_assoc()):
+            ?>
+            <div class="item-card">
+                <?php if (!empty($item['image_url'])): ?>
+                    <img src="<?php echo htmlspecialchars($item['image_url']); ?>" alt="<?php echo htmlspecialchars($item['name']); ?>" class="item-image">
+                <?php endif; ?>
+                <h3><?php echo htmlspecialchars($item['name']); ?></h3>
+                <p>Size: <?php echo htmlspecialchars($item['size']); ?></p>
+                <p>Color: <?php echo htmlspecialchars($item['color']); ?></p>
+                <p>Brand: <?php echo htmlspecialchars($item['brand']); ?></p>
+                <a href="view_item.php?id=<?php echo $item['id']; ?>">View Details</a>
+            </div>
+        <?php endwhile; ?>
+    </div>
 </div>
 
 <div class="footer">
@@ -126,5 +193,10 @@ $itemTypes = array("ALL", "Shirts", "Pants", "Dresses", "Shoes", "Accessories");
     <p>Your Closet, Organized Digitally.™</p>
     <p>&copy; 2024 Lookbook. All rights reserved.</p>
 </div>
+
+<?php
+$stmt->close();
+$conn->close();
+?>
 </body>
 </html>
