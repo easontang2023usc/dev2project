@@ -1,9 +1,7 @@
 <?php
 require_once '../components/authentication.php';
-// Rest of your test.php code below
-?>
+requireLogin();
 
-<?php
 // Initialize database connection
 $conn = new mysqli("webdev.iyaserver.com", "mparthas", "AcadDev_Parthasarathy_8846782870", "mparthas_wardrobe");
 if ($conn->connect_error) {

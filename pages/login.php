@@ -1,11 +1,14 @@
 <?php
-// login.php
+// pages/login.php
 session_start();
-// If user is already logged in, redirect to index
-if(isset($_SESSION['user_id'])) {
+require_once '../components/authentication.php';
+
+// Redirect if already logged in
+if(isLoggedIn()) {
     header("Location: index.php");
     exit();
 }
+?>
 ?>
     <!DOCTYPE html>
     <html lang="en">

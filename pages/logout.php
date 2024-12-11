@@ -1,6 +1,10 @@
 <?php
-// logout.php
 session_start();
+// Check if user is logged in at all
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php");
+    exit();
+}
 ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -116,7 +120,7 @@ session_start();
     <section class="logout-section">
         <h2>Are you sure you want to logout?</h2>
         <div class="button-group">
-            <form action="logoutprocess.php" method="post" style="display: inline;">
+            <form action="../pages/logout_process.php" method="post" style="display: inline;">
                 <button type="submit" class="btn logout-btn">Yes, Logout</button>
             </form>
             <a href="index.php" class="btn cancel-btn">No, Take Me Back</a>
@@ -128,23 +132,3 @@ session_start();
     </footer>
     </body>
     </html>
-
-<?php
-// logoutprocess.php
-session_start();
-
-// Unset all session variables
-$_SESSION = array();
-
-// Destroy the session cookie
-if (isset($_COOKIE[session_name()])) {
-    setcookie(session_name(), '', time()-3600, '/');
-}
-
-// Destroy the session
-session_destroy();
-
-// Redirect to login page
-header("Location: login.php");
-exit;
-?>

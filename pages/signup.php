@@ -204,22 +204,6 @@ if ($conn->connect_error) {
     exit;
 }
 
-$sql = "CREATE TABLE IF NOT EXISTS Website_users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
-    username VARCHAR(50) UNIQUE NOT NULL,
-    email VARCHAR(100) UNIQUE NOT NULL,
-    password VARCHAR(255) NOT NULL,
-    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-)";
-
-if ($conn->query($sql) === TRUE) {
-    echo "Table Website_users created successfully";
-} else {
-    echo "Error creating table: " . $conn->error;
-}
-
-
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = trim($_POST['username']);
     $email = trim($_POST['email']);

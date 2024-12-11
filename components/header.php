@@ -1,3 +1,16 @@
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Temporary debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+echo '<pre>';
+print_r($_SESSION);
+echo '</pre>';
+?>
+
 <style>
     * {
         margin: 0;
@@ -26,18 +39,39 @@
     }
 </style>
 
+<!--<header class="header">-->
+<!--    <div class="logo">-->
+<!--        <h2>LOOKBOOK</h2>-->
+<!--    </div>-->
+<!--    <nav class="nav-links">-->
+<!--        <a href="../pages/index.php">Home</a>-->
+<!--        <a href="../pages/item_filter.php">Search Closet</a>-->
+<!--        <a href="../pages/features.php">Features</a>-->
+<!--        <a href="../pages/about-us.php">About Us</a>-->
+<!--        --><?php //if(isset($_SESSION['user_id']) && $_SESSION['user_id']): ?>
+<!--            <a href="../pages/logout.php">Logout (--><?php //echo htmlspecialchars($_SESSION['username'] ?? ''); ?><!--)</a>-->
+<!--        --><?php //else: ?>
+<!--            <a href="../pages/login.php">Login</a>-->
+<!--            <a href="../pages/signup.php">Sign Up</a>-->
+<!--        --><?php //endif; ?>
+<!--    </nav>-->
+<!--</header>-->
 <header class="header">
     <div class="logo">
         <h2>LOOKBOOK</h2>
     </div>
     <nav class="nav-links">
         <a href="../pages/index.php">Home</a>
-        <a href="../pages/item_filter.php">Search Closet</a>
-        <a href="../pages/features.php">Features</a>
-        <a href="../pages/about-us.php">About Us</a>
-        <?php if(isset($_SESSION['user_id'])): ?>
-            <a href="../pages/logout.php">Logout</a>
+        <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
+            <a href="../pages/item_filter.php">Search Closet</a>
+            <a href="../pages/features.php">Features</a>
+            <a href="../pages/about-us.php">About Us</a>
+            <a href="../pages/logout.php" class="user-info">
+                Logout (<?php echo htmlspecialchars($_SESSION['username']); ?>)
+            </a>
         <?php else: ?>
+            <a href="../pages/about-us.php">About Us</a>
+            <a href="../pages/login.php">Login</a>
             <a href="../pages/signup.php">Sign Up</a>
         <?php endif; ?>
     </nav>
