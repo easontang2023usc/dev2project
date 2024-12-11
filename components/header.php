@@ -1,6 +1,3 @@
-<?php
-// header.php
-?>
 <style>
     * {
         margin: 0;

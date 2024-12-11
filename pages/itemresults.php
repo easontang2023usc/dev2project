@@ -54,6 +54,8 @@ if (isset($_GET['item_type']) && $_GET['item_type'] != 'ALL') {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php include '../components/ga.php'; ?>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search Results - Your Digital Closet</title>
@@ -90,13 +92,9 @@ if (isset($_GET['item_type']) && $_GET['item_type'] != 'ALL') {
         }
     </style>
 </head>
-<?php include 'ga.php'; ?>
 
 <body>
-<header>
-    <h1>Your Digital Closet</h1>
-</header>
-
+<?php include '../components/header.php'; ?>
 
 <div class="container">
     <h1>Search Results</h1>

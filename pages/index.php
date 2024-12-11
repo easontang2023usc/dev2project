@@ -19,7 +19,7 @@ $features = [
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include 'ga.php'; ?>
+    <?php include '../components/ga.php'; ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lookbook - Your Digital Closet</title>
@@ -31,16 +31,7 @@ $features = [
             font-family: Arial, sans-serif;
         }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
-            text-align: center;
-        }
-
-        h1, h2 {
-            margin: 2rem 0;
-        }
+        
 
         .feature-text {
             max-width: 800px;
@@ -105,7 +96,7 @@ $features = [
 </head>
 
 <body>
-<?php include 'header.php'; ?>
+<?php include '../components/header.php'; ?>
 
 <div class="container">
     <h1>Search Your Closet</h1>

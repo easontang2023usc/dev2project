@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php include '../components/ga.php'; ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up - LookBook</title>
@@ -96,10 +97,9 @@
         }
     </style>
 </head>
-<?php include 'ga.php'; ?>
 
 <body>
-<?php include 'header.php'; ?>
+<?php include '../components/header.php'; ?>
 
 <section class="hero">
     <div class="hero-content">
