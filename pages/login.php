@@ -9,7 +9,7 @@ if(isLoggedIn()) {
     exit();
 }
 ?>
-?>
+
     <!DOCTYPE html>
     <html lang="en">
     <head>

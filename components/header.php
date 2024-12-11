@@ -2,13 +2,12 @@
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
-
 // Temporary debugging
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
+//error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//echo '<pre>';
+//print_r($_SESSION);
+//echo '</pre>';
 ?>
 
 <style>
@@ -71,6 +70,7 @@ echo '</pre>';
             </a>
         <?php else: ?>
             <a href="../pages/about-us.php">About Us</a>
+            <a href="../pages/features.php">Features</a>
             <a href="../pages/login.php">Login</a>
             <a href="../pages/signup.php">Sign Up</a>
         <?php endif; ?>
