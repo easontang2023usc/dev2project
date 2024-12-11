@@ -7,7 +7,7 @@
 </head>
 <body>
 <h1>Item Filter</h1>
-<form action="itemresults.php" method="GET">
+<form action="pages/itemresults.php" method="GET">
     <label for="size">Size:</label>
     <input type="text" id="size" name="size"><br><br>
 

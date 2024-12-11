@@ -127,6 +127,8 @@ if (isset($_GET['item_type']) && $_GET['item_type'] != 'ALL') {
         }
     </style>
 </head>
+<?php include 'ga.php'; ?>
+
 <body>
 <?php include 'header.php'; ?>
 

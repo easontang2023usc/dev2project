@@ -48,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($stmt->execute()) {
 
-        header("Location: welcome.php");
+        header("Location: index.php");
         exit;
     } else {
 

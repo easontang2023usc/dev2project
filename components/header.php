@@ -34,10 +34,10 @@
         <h2>LOOKBOOK</h2>
     </div>
     <nav class="nav-links">
-        <a href="index.php">Home</a>
-        <a href="test.php">Test</a>
-        <a href="features.php">Features</a>
-        <a href="about-us.php">About Us</a>
-        <a href="signup.php">Sign Up</a>
+        <a href="../pages/index.php">Home</a>
+        <a href="../pages/test.php">Test</a>
+        <a href="../pages/features.php">Features</a>
+        <a href="../pages/about-us.php">About Us</a>
+        <a href="../pages/signup.php">Sign Up</a>
     </nav>
 </header>

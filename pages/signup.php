@@ -96,6 +96,8 @@
         }
     </style>
 </head>
+<?php include 'ga.php'; ?>
+
 <body>
 <?php include 'header.php'; ?>
 
@@ -108,7 +110,7 @@
 
 <section class="signup-section">
     <h2>Sign Up</h2>
-    <form class="signup-form" action="signupprocess.php" method="post">
+    <form class="signup-form" action="../signupprocess.php" method="post">
         <input type="text" name="username" placeholder="Username" required>
         <input type="email" name="email" placeholder="Email Address" required>
         <input type="password" name="password" placeholder="Password" required>

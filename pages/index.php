@@ -19,6 +19,7 @@ $features = [
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php include 'ga.php'; ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lookbook - Your Digital Closet</title>
@@ -102,6 +103,7 @@ $features = [
         }
     </style>
 </head>
+
 <body>
 <?php include 'header.php'; ?>
 
@@ -122,7 +124,7 @@ $features = [
         <p class="feature-text">
             The Lookbook <span class="highlight">digitally organizes</span> your wardrobe, enabling quick and easy searches.
         </p>
-        <img src="Public/image.png" alt="Digital Closet Organization" class="closet-image">
+        <img src="../Public/image.png" alt="Digital Closet Organization" class="closet-image">
     </section>
 
     <div class="features-grid">

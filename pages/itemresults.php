@@ -90,10 +90,13 @@ if (isset($_GET['item_type']) && $_GET['item_type'] != 'ALL') {
         }
     </style>
 </head>
+<?php include 'ga.php'; ?>
+
 <body>
 <header>
     <h1>Your Digital Closet</h1>
 </header>
+
 
 <div class="container">
     <h1>Search Results</h1>
@@ -150,8 +153,8 @@ if (isset($_GET['item_type']) && $_GET['item_type'] != 'ALL') {
                 <?php endif; ?>
                 <div class="item-actions">
                     <a href="view_item.php?id=<?php echo $item['item_id']; ?>">View</a>
-                    <a href="edit_item.php?id=<?php echo $item['item_id']; ?>">Edit</a>
-                    <a href="delete_item.php?id=<?php echo $item['item_id']; ?>"
+                    <a href="../edit_item.php?id=<?php echo $item['item_id']; ?>">Edit</a>
+                    <a href="../delete_item.php?id=<?php echo $item['item_id']; ?>"
                        onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
                 </div>
             </div>

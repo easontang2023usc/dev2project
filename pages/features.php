@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <?php include 'ga.php'; ?>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Features - LookBook</title>
@@ -19,7 +20,7 @@
             position: relative;
             height: 60vh;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-            url('Public/Background Image.png');
+            url('../Public/Background Image.png');
             background-size: cover;
             background-position: center;
             display: flex;
