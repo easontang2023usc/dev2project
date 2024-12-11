@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <input type="submit" value="Add Item">
 </form>
-<a href="pages/itemresults.php">Back to Results</a>
+<a href="../pages/itemresults.php">Back to Results</a>
 </body>
 </html>
 

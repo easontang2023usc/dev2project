@@ -32,7 +32,7 @@
     </div>
     <nav class="nav-links">
         <a href="../pages/index.php">Home</a>
-        <a href="../pages/test.php">Test</a>
+        <a href="../pages/item_filter.php">Test</a>
         <a href="../pages/features.php">Features</a>
         <a href="../pages/about-us.php">About Us</a>
         <a href="../pages/signup.php">Sign Up</a>

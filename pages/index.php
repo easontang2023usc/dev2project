@@ -31,7 +31,12 @@ $features = [
             font-family: Arial, sans-serif;
         }
 
-        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
 
         .feature-text {
             max-width: 800px;

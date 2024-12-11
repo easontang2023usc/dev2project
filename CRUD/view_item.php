@@ -33,7 +33,7 @@ if (!$item) {
 <p><strong>Color:</strong> <?php echo htmlspecialchars($item['color']); ?></p>
 <p><strong>Brand:</strong> <?php echo htmlspecialchars($item['brand']); ?></p>
 <p><strong>Item Type:</strong> <?php echo htmlspecialchars($item['item_type']); ?></p>
-<a href="itemresults.php">Back to Results</a>
+<a href="../pages/itemresults.php">Back to Results</a>
 </body>
 </html>
 
