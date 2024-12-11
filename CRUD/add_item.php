@@ -16,7 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("sssss", $name, $size, $color, $brand, $item_type);
     $stmt->execute();
 
-    header("Location: itemresults.php");
+    header("Location: item_filter.php");
     exit;
 }
 ?>
@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <input type="submit" value="Add Item">
 </form>
-<a href="../pages/itemresults.php">Back to Results</a>
+<a href="../pages/item_filter.php">Back to Results</a>
 </body>
 </html>
 

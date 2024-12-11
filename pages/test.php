@@ -1,4 +1,9 @@
 <?php
+require_once '../components/authentication.php';
+// Rest of your test.php code below
+?>
+
+<?php
 // Initialize database connection
 $conn = new mysqli("webdev.iyaserver.com", "mparthas", "AcadDev_Parthasarathy_8846782870", "mparthas_wardrobe");
 if ($conn->connect_error) {
@@ -137,7 +142,7 @@ if (isset($_GET['item_type']) && $_GET['item_type'] != 'ALL') {
     <h1>Search Your Closet</h1>
 
     <div class="search-form">
-        <form method="GET" action="itemresults.php">
+        <form method="GET" action="item_filter.php">
             <button type="submit" class="search-button">Search Closet</button>
 
             <div class="form-group">
