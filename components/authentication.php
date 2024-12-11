@@ -1,5 +1,4 @@
 <?php
-// auth_check.php - Include this at the top of protected pages
 session_start();
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");

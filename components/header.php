@@ -32,13 +32,12 @@
     </div>
     <nav class="nav-links">
         <a href="../pages/index.php">Home</a>
-        <a href="../pages/item_filter.php">Test</a>
+        <a href="../pages/item_filter.php">Search Closet</a>
         <a href="../pages/features.php">Features</a>
         <a href="../pages/about-us.php">About Us</a>
         <?php if(isset($_SESSION['user_id'])): ?>
             <a href="../pages/logout.php">Logout</a>
         <?php else: ?>
-            <a href="../pages/login.php">Login</a>
             <a href="../pages/signup.php">Sign Up</a>
         <?php endif; ?>
     </nav>
