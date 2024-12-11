@@ -62,7 +62,11 @@ if (session_status() === PHP_SESSION_NONE) {
     <nav class="nav-links">
         <a href="../pages/index.php">Home</a>
         <?php if(isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
-            <a href="../pages/item_filter.php">Search Closet</a>
+            <?php if(isset($_SESSION['admin']) && $_SESSION['admin'] == 1): ?>
+                <a href="../pages/item_filter_admin.php">Search Closet</a>
+            <?php else: ?>
+                <a href="../pages/item_filter_user.php">Search Closet</a>
+            <?php endif; ?>
             <a href="../pages/features.php">Features</a>
             <a href="../pages/about-us.php">About Us</a>
             <a href="../pages/logout.php" class="user-info">

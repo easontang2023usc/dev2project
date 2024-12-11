@@ -1,11 +1,15 @@
 <?php
 session_start();
-// Redirect if already logged in
-if(isset($_SESSION['user_id'])) {
-    header("Location: index.php");
-    exit();
+
+$conn = new mysqli("webdev.iyaserver.com", "mparthas", "AcadDev_Parthasarathy_8846782870", "mparthas_wardrobe");
+
+if ($conn->connect_error) {
+    $_SESSION['error'] = "Connection failed: " . $conn->connect_error;
+    header("Location: signup.php");
+    exit;
 }
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -153,27 +157,27 @@ if(isset($_SESSION['user_id'])) {
         unset($_SESSION['success']);
     }
     ?>
-    <form class="signup-form" action="signupprocess.php" method="post">
+    <form class="signup-form" action="../pages/signup_process.php" method="post">
         <input type="text" name="username" placeholder="Username" required
                pattern="[a-zA-Z0-9_]{3,20}"
                title="Username must be between 3-20 characters and can only contain letters, numbers, and underscores">
 
         <input type="email" name="email" placeholder="Email Address" required>
 
-        <input type="password" name="password" placeholder="Password" required
-               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-               title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number">
+        <input type="password" name="password" placeholder="Password" required >
+<!--               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"-->
+<!--               title="Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, and one number">-->
 
         <input type="password" name="confirm_password" placeholder="Confirm Password" required>
 
-        <div class="password-requirements">
-            Password must be at least 8 characters long and include:
-            <ul>
-                <li>At least one uppercase letter</li>
-                <li>At least one lowercase letter</li>
-                <li>At least one number</li>
-            </ul>
-        </div>
+<!--        <div class="password-requirements">-->
+<!--            Password must be at least 8 characters long and include:-->
+<!--            <ul>-->
+<!--                <li>At least one uppercase letter</li>-->
+<!--                <li>At least one lowercase letter</li>-->
+<!--                <li>At least one number</li>-->
+<!--            </ul>-->
+<!--        </div>-->
 
         <button type="submit" class="signup-btn">Sign Up</button>
     </form>
@@ -187,107 +191,3 @@ if(isset($_SESSION['user_id'])) {
 </footer>
 </body>
 </html>
-
-<?php
-session_start();
-
-$servername = "webdev.iyaserver.com";
-$username = "mparthas";
-$password = "AcadDev_Parthasarathy_8846782870";
-$dbname = "mparthas_wardrobe";
-
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-if ($conn->connect_error) {
-    $_SESSION['error'] = "Connection failed: " . $conn->connect_error;
-    header("Location: signup.php");
-    exit;
-}
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username']);
-    $email = trim($_POST['email']);
-    $password = $_POST['password'];
-    $confirm_password = $_POST['confirm_password'];
-
-    // Validation
-    if (empty($username) || empty($email) || empty($password) || empty($confirm_password)) {
-        $_SESSION['error'] = "All fields are required.";
-        header("Location: signup.php");
-        exit;
-    }
-
-    // Username validation
-    if (!preg_match('/^[a-zA-Z0-9_]{3,20}$/', $username)) {
-        $_SESSION['error'] = "Username must be between 3-20 characters and can only contain letters, numbers, and underscores.";
-        header("Location: signup.php");
-        exit;
-    }
-
-    // Email validation
-    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $_SESSION['error'] = "Invalid email format.";
-        header("Location: signup.php");
-        exit;
-    }
-
-    // Password validation
-    if (strlen($password) < 8) {
-        $_SESSION['error'] = "Password must be at least 8 characters long.";
-        header("Location: signup.php");
-        exit;
-    }
-
-    if (!preg_match('/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/', $password)) {
-        $_SESSION['error'] = "Password must include at least one uppercase letter, one lowercase letter, and one number.";
-        header("Location: signup.php");
-        exit;
-    }
-
-    if ($password !== $confirm_password) {
-        $_SESSION['error'] = "Passwords do not match.";
-        header("Location: signup.php");
-        exit;
-    }
-
-    // Check if username or email already exists
-    $check_sql = "SELECT username, email FROM Website_users WHERE username = ? OR email = ?";
-    $check_stmt = $conn->prepare($check_sql);
-    $check_stmt->bind_param("ss", $username, $email);
-    $check_stmt->execute();
-    $check_result = $check_stmt->get_result();
-
-    if ($check_result->num_rows > 0) {
-        $row = $check_result->fetch_assoc();
-        if ($row['username'] === $username) {
-            $_SESSION['error'] = "Username already exists.";
-        } else {
-            $_SESSION['error'] = "Email already exists.";
-        }
-        header("Location: signup.php");
-        exit;
-    }
-
-    // Hash password
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-    // Insert new user
-    $sql = "INSERT INTO Website_users (username, email, password) VALUES (?, ?, ?)";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("sss", $username, $email, $hashed_password);
-
-    if ($stmt->execute()) {
-        $_SESSION['success'] = "Registration successful! Please login.";
-        header("Location: login.php");
-        exit;
-    } else {
-        $_SESSION['error'] = "Error: " . $stmt->error;
-        header("Location: signup.php");
-        exit;
-    }
-
-    $stmt->close();
-}
-
-$conn->close();
-?>

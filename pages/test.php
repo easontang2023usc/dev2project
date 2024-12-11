@@ -142,7 +142,7 @@ if (isset($_GET['item_type']) && $_GET['item_type'] != 'ALL') {
     <h1>Search Your Closet</h1>
 
     <div class="search-form">
-        <form method="GET" action="item_filter.php">
+        <form method="GET" action="item_filter_admin.php">
             <button type="submit" class="search-button">Search Closet</button>
 
             <div class="form-group">

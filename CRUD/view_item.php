@@ -79,7 +79,7 @@ if (!$item) {
     <p><strong>Type:</strong> <?php echo htmlspecialchars($item['item_type_name']); ?></p>
     <p><strong>Added:</strong> <?php echo date('M d, Y', strtotime($item['acquired_dt'])); ?></p>
 
-    <a href="../pages/item_filter.php" class="back-link">Back to Results</a>
+    <a href="../pages/item_filter_admin.php" class="back-link">Back to Results</a>
     </body>
     </html>
 

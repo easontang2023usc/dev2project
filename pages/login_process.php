@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit();
     }
 
-    $sql = "SELECT user_id, username, password FROM Users WHERE username = ?";
+    $sql = "SELECT user_id, username, password,admin FROM Users WHERE username = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $username);
     $stmt->execute();
@@ -29,11 +29,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['username'];
             $_SESSION['logged_in'] = true;
+            $_SESSION['admin'] = $user['admin'];  // Add this line
 
             // For debugging, print after setting session
             error_log('Session variables set: ' . print_r($_SESSION, true));
 
-            header("Location: item_filter.php");  // Make sure this path is correct
+            header("Location: item_filter_admin.php");  // Make sure this path is correct
             exit();
         }
     }

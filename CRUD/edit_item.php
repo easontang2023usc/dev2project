@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $stmt->bind_param("siiiii", $item_name, $size_id, $color_id, $brand_id, $item_type_id, $id);
 
     if ($stmt->execute()) {
-        header("Location: ../pages/item_filter.php");
+        header("Location: ../pages/item_filter_admin.php");
         exit;
     } else {
         echo "Error updating record: " . $stmt->error;
@@ -200,7 +200,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         <input type="submit" value="Update">
     </form>
-    <a href="../pages/item_filter.php" class="back-link">Back to Results</a>
+    <a href="../pages/item_filter_admin.php" class="back-link">Back to Results</a>
     </body>
     </html>
 
