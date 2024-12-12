@@ -1,7 +1,18 @@
 <?php
+session_start();
 require_once '../components/authentication.php';
-requireLogin();
 
+// Check if user is logged in first
+if (!isset($_SESSION['logged_in']) || !$_SESSION['logged_in']) {
+    header("Location: login.php");
+    exit();
+}
+
+// If they are an admin, send them to admin page
+if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
+    header("Location: item_filter_admin.php");
+    exit();
+}
 // Initialize database connection
 $conn = new mysqli("webdev.iyaserver.com", "mparthas", "AcadDev_Parthasarathy_8846782870", "mparthas_wardrobe");
 if ($conn->connect_error) {

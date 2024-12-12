@@ -36,6 +36,20 @@ if (session_status() === PHP_SESSION_NONE) {
         text-decoration: none;
         color: black;
     }
+    .logo {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    .logo img {
+        height: 40px;  /* Adjust size as needed */
+        width: auto;
+    }
+
+    .logo h2 {
+        color: black;
+    }
 </style>
 
 <!--<header class="header">-->
@@ -57,7 +71,9 @@ if (session_status() === PHP_SESSION_NONE) {
 <!--</header>-->
 <header class="header">
     <div class="logo">
-        <h2>LOOKBOOK</h2>
+        <div class="logo">
+            <img src="../Public/lookbook_logo.png" alt="Lookbook Logo">
+        </div>
     </div>
     <nav class="nav-links">
         <a href="../pages/index.php">Home</a>
