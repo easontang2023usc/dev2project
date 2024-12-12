@@ -93,7 +93,6 @@ $item = $result->fetch_assoc();
     </head>
     <body>
     <h1>Random Outfit Recommender</h1>
-
     <div class="recommendation-container">
         <?php if ($item): ?>
             <?php if (isset($item['images'])): ?>
