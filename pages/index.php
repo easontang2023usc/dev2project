@@ -141,7 +141,7 @@ $features = [
     </div>
 
     <div class="logo-section">
-        <img src="images/logo.png" alt="Lookbook Logo">
+        <img src="../Public/lookbook_logo.png" alt="Lookbook Wardrobe Organization">
         <p class="logo-text">Your Closet, Organized Digitally.™</p>
     </div>
 </div>
