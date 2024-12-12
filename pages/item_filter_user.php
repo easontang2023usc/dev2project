@@ -13,6 +13,7 @@ if (isset($_SESSION['admin']) && $_SESSION['admin'] == 1) {
     header("Location: item_filter_admin.php");
     exit();
 }
+
 // Initialize database connection
 $conn = new mysqli("webdev.iyaserver.com", "mparthas", "AcadDev_Parthasarathy_8846782870", "mparthas_wardrobe");
 if ($conn->connect_error) {
@@ -146,13 +147,57 @@ if (isset($_GET['item_type_name']) && $_GET['item_type_name'] != 'ALL') {
             padding: 15px;
             border-radius: 8px;
             background: white;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            padding-bottom: 60px; /* Make room for the button */
+
         }
+
 
         .item-image {
             width: 100%;
             height: 200px;
             object-fit: cover;
             border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        .item-actions {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 15px;
+            margin-top: auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        .item-actions a {
+            display: block;
+            padding: 10px 20px;
+            text-decoration: none;
+            color: #fff;
+            border-radius: 4px;
+            font-size: 14px;
+            background-color: #4CAF50;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background-color 0.3s ease;
+        }
+
+        .item-actions a:hover {
+            background-color: #45a049;
+        }
+        /* Adjust the spacing for item details */
+        .item-card h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .item-card p {
+            margin: 5px 0;
         }
 
         .active-filters {
@@ -184,11 +229,12 @@ if (isset($_GET['item_type_name']) && $_GET['item_type_name'] != 'ALL') {
             color: #fff;
             border-radius: 4px;
             font-size: 14px;
+            background-color: #4CAF50;
         }
 
-        .item-actions a:nth-child(1) { background-color: #4CAF50; }
-        .item-actions a:nth-child(2) { background-color: #2196F3; }
-        .item-actions a:nth-child(3) { background-color: #f44336; }
+        .item-actions a:hover {
+            background-color: #45a049;
+        }
     </style>
 </head>
 
@@ -283,7 +329,7 @@ if (isset($_GET['item_type_name']) && $_GET['item_type_name'] != 'ALL') {
             }
             if (isset($_GET['item_type']) && $_GET['item_type'] != 'ALL') {
                 $type_name = $conn->query("SELECT item_type_name FROM Item_Types WHERE item_type_id = " . intval($_GET['item_type']))->fetch_assoc();
-                echo "<span class='filter-tag'>Type: " . htmlspecialchars($type_name['type_name']) . "</span>";
+                echo "<span class='filter-tag'>Type: " . htmlspecialchars($type_name['item_type_name']) . "</span>";
             }
             ?>
         </div>
@@ -310,20 +356,25 @@ if (isset($_GET['item_type_name']) && $_GET['item_type_name'] != 'ALL') {
                 <img src="<?php echo htmlspecialchars($item['images']); ?>"
                      alt="<?php echo htmlspecialchars($item['item_name']); ?>"
                      class="item-image">
-                <h3><?php echo htmlspecialchars($item['item_name']); ?></h3>
-                <p>Added: <?php echo date('M d, Y', strtotime($item['acquired_dt'])); ?></p>
-                <?php if (isset($item['size_name'])): ?>
-                    <p>Size: <?php echo htmlspecialchars($item['size_name']); ?></p>
-                <?php endif; ?>
-                <?php if (isset($item['color_name'])): ?>
-                    <p>Color: <?php echo htmlspecialchars($item['color_name']); ?></p>
-                <?php endif; ?>
-                <?php if (isset($item['brand_name'])): ?>
-                    <p>Brand: <?php echo htmlspecialchars($item['brand_name']); ?></p>
-                <?php endif; ?>
-                <?php if (isset($item['type_name'])): ?>
-                    <p>Type: <?php echo htmlspecialchars($item['type_name']); ?></p>
-                <?php endif; ?>
+                <div class="item-details">
+                    <h3><?php echo htmlspecialchars($item['item_name']); ?></h3>
+                    <p>Added: <?php echo date('M d, Y', strtotime($item['acquired_dt'])); ?></p>
+                    <?php if (isset($item['size_name'])): ?>
+                        <p>Size: <?php echo htmlspecialchars($item['size_name']); ?></p>
+                    <?php endif; ?>
+                    <?php if (isset($item['color_name'])): ?>
+                        <p>Color: <?php echo htmlspecialchars($item['color_name']); ?></p>
+                    <?php endif; ?>
+                    <?php if (isset($item['brand_name'])): ?>
+                        <p>Brand: <?php echo htmlspecialchars($item['brand_name']); ?></p>
+                    <?php endif; ?>
+                    <?php if (isset($item['type_name'])): ?>
+                        <p>Type: <?php echo htmlspecialchars($item['type_name']); ?></p>
+                    <?php endif; ?>
+                </div>
+                <div class="item-actions">
+                    <a href="../CRUD/view_item.php?id=<?php echo $item['item_id']; ?>">View Details</a>
+                </div>
             </div>
         <?php endwhile; ?>
     </div>
