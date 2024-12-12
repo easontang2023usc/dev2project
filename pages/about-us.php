@@ -54,9 +54,6 @@ $faqs = [
         'answer' => 'The basic version is free, offering core closet organization features. Premium plans with advanced analytics and styling recommendations are coming soon!'
     ]
 ];
-
-// Include the waitlist component
-include '../components/waitlist_component.php';
 ?>
 
 <!DOCTYPE html>
@@ -349,10 +346,13 @@ include '../components/waitlist_component.php';
                 </div>
             <?php endforeach; ?>
         </div>
-    </section>
-</div>
 
-<?php renderWaitlistForm(); ?>
+</div>
+<?php
+include '../components/waitlist_component.php';
+renderWaitlistForm();
+?>
+</section>
 
 
 <script>
