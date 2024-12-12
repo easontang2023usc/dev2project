@@ -1,11 +1,7 @@
 <?php
 session_start();
-// For debugging
-//error_reporting(E_ALL);
-//ini_set('display_errors', 1);
-//echo '<pre>';
-//print_r($_SESSION);
-//echo '</pre>';
+// Include the waitlist component
+include '../components/waitlist_component.php';
 ?>
 
 <!DOCTYPE html>
@@ -115,7 +111,7 @@ session_start();
                 height: 300px;
             }
         }
-        a{
+        a {
             color: white;
             text-decoration: none;
         }
@@ -124,12 +120,11 @@ session_start();
 <body>
 <?php include '../components/header.php'; ?>
 
-
 <section class="hero">
     <div class="hero-content">
         <h1>Unlock Your Wardrobe's Potential</h1>
         <p>We manage your wardrobe so you won't have to outfit in</p>
-        <button class="get-started-btn"> <a href="signup.php">Get started<a/></button>
+        <button class="get-started-btn"> <a href="signup.php">Get started</a></button>
     </div>
 </section>
 
@@ -163,6 +158,13 @@ session_start();
         </div>
     <?php endforeach; ?>
 </section>
+
+<?php
+renderWaitlistForm(
+    "Join the LookBook Revolution",
+    "Transform how you manage your wardrobe. Sign up for early access and be the first to experience our game-changing wardrobe management tool!"
+);
+?>
 
 <footer>
     <p>&copy; <?php echo date('Y'); ?> LookBook. All rights reserved.</p>

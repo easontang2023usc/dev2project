@@ -2,30 +2,31 @@
 session_start();
 //error_reporting(E_ALL);
 //ini_set('display_errors', 1);
-//echo '<pre>';
-//print_r($_SESSION);
-//echo '</pre>';
 
 $team_members = [
     [
         'name' => 'Deniz Yamangl',
-        'image' => '/api/placeholder/200/200'
+        'image' => '../Public/denizpic.jpg',
     ],
     [
         'name' => 'Denise Sanchez',
-        'image' => '/api/placeholder/200/200'
+        'image' => '../Public/denisepic.jpg',
+
     ],
     [
         'name' => 'Maya Parthasarathy',
-        'image' => '/api/placeholder/200/200'
+        'image' => '../Public/mayapic.png',
+
     ],
     [
         'name' => 'Eason Tang',
-        'image' => '/api/placeholder/200/200'
+        'image' => '../Public/easonpic.jpeg',
+
     ],
     [
         'name' => 'Giovanni Goree',
-        'image' => '/api/placeholder/200/200'
+        'image' => '../Public/giopic.jpg',
+
     ]
 ];
 
@@ -36,17 +37,20 @@ $faqs = [
     ],
     [
         'question' => 'How does The Lookbook work?',
-        'answer' => 'Simply upload photos of your clothing, and The Lookbook organizes them into a digital closet. Use the app to search, filter, and plan outfits with ease.'
+        'answer' => 'Our intelligent system uses computer vision to categorize your clothes by type, color, brand, and more. Upload a photo, and we do the rest - creating a searchable, visual inventory of your wardrobe.'
     ],
     [
         'question' => 'Why should I use The Lookbook?',
-        'answer' => 'The Lookbook saves time, reduces frustration, and helps you make the most of your wardrobe. Plus, it promotes sustainability by encouraging mindful use of the clothes you already own.'
+        'answer' => 'The Lookbook saves time, reduces frustration, and helps you make the most of your wardrobe. By providing smart organization and outfit planning, we promote sustainability and help you rediscover clothes you already own.'
     ],
     [
         'question' => 'Is the Lookbook free to use?',
-        'answer' => 'The basic version is free, but we offer premium features for users looking to take their closet organization to the next level. Stay tuned for updates!'
+        'answer' => 'The basic version is free, offering core closet organization features. Premium plans with advanced analytics and styling recommendations are coming soon!'
     ]
 ];
+
+// Include the waitlist component
+include '../components/waitlist_component.php';
 ?>
 
 <!DOCTYPE html>
@@ -56,12 +60,27 @@ $faqs = [
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - LookBook</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #a3c7f1;
+            --secondary-color: #5b7ea1;
+            --text-dark: #333;
+            --text-light: #666;
+            --background-light: #f9f9fc;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Inter', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--background-light);
+            color: var(--text-dark);
+            line-height: 1.6;
         }
 
         .container {
@@ -76,26 +95,62 @@ $faqs = [
         }
 
         .section-title {
-            font-size: 2rem;
+            font-size: 2.5rem;
             margin-bottom: 2rem;
+            color: var(--text-dark);
+            font-weight: 700;
+            position: relative;
         }
 
-        .story-card {
-            background: #fff;
-            border-radius: 15px;
-            padding: 2rem;
-            margin: 2rem auto;
-            max-width: 800px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary-color);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
         }
 
-        .mission-card {
-            background: #fff;
+        .content-section {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
             border-radius: 15px;
-            padding: 2rem;
+            padding: 3rem;
             margin: 2rem auto;
-            max-width: 800px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            max-width: 1100px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.08);
+            gap: 2rem;
+        }
+
+        .content-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .content-image {
+            flex: 1;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .content-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .content-section:hover .content-image img {
+            transform: scale(1.1);
+        }
+
+        .highlight {
+            color: var(--secondary-color);
+            font-weight: 600;
         }
 
         .team-grid {
@@ -107,6 +162,16 @@ $faqs = [
 
         .team-member {
             text-align: center;
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
 
         .team-member img {
@@ -115,46 +180,85 @@ $faqs = [
             border-radius: 50%;
             margin-bottom: 1rem;
             object-fit: cover;
+            border: 4px solid var(--primary-color);
         }
 
         .team-member h3 {
-            font-size: 1.1rem;
-            margin-top: 0.5rem;
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin-bottom: 0.25rem;
         }
 
-        .faq-container {
+        .team-member p {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .team-member .member-bio {
+            margin-top: 0.5rem;
+            font-size: 0.75rem;
+            color: var(--text-light);
+        }
+
+        .faq-accordion {
             max-width: 800px;
             margin: 0 auto;
         }
 
         .faq-item {
-            margin-bottom: 2rem;
-            text-align: center;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+
+        .faq-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .faq-header:hover {
+            background-color: rgba(163, 199, 241, 0.1);
         }
 
         .faq-question {
-            font-weight: bold;
-            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
         }
 
-        .faq-answer {
-            color: #666;
-            line-height: 1.6;
+        .faq-toggle {
+            color: var(--secondary-color);
+            transition: transform 0.3s ease;
         }
 
-        footer {
-            background-color: white;
-            padding: 2rem;
-            text-align: center;
-            border-top: 1px solid #eee;
-            margin-top: 4rem;
+        .faq-content {
+            display: none;
+            padding: 1rem 1.5rem;
+            color: var(--text-light);
         }
 
-        .highlight {
-            font-weight: bold;
+        .faq-item.active .faq-content {
+            display: block;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(180deg);
         }
 
         @media (max-width: 1024px) {
+            .content-section {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .content-text, .content-image {
+                width: 100%;
+            }
+
             .team-grid {
                 grid-template-columns: repeat(3, 1fr);
             }
@@ -184,19 +288,31 @@ $faqs = [
 <div class="container">
     <section class="section">
         <h2 class="section-title">Our Story</h2>
-        <div class="story-card">
-            <p>The idea for The Lookbook came from a frustration we all know too well: <span class="highlight">digging through a disorganized closet, struggling to find the right outfit.</span></p>
-            <br>
-            <p>When we started talking to friends and family, we realized this was a universal problem—forgotten favorite pieces, wasted time, and constant clutter. That's when we set out to create a solution.</p>
-            <br>
-            <p>The <span class="highlight">Lookbook empowers you to organize, search, and rediscover</span> your clothes with smart filters for size, color, brand, and item type. It's not just about convenience - it's about sustainability and helping you make the most of what you already own. By reducing waste and simplifying your daily routine, The Lookbook transforms how you connect with your closet, so you can love your wardrobe all over again.</p>
+        <div class="content-section">
+            <div class="content-text">
+                <p>The idea for The Lookbook came from a frustration we all know too well: <span class="highlight">digging through a disorganized closet, struggling to find the right outfit.</span></p>
+                <br>
+                <p>When we started talking to friends and family, we realized this was a universal problem—forgotten favorite pieces, wasted time, and constant clutter. That's when we set out to create a solution.</p>
+                <br>
+                <p>The <span class="highlight">Lookbook empowers you to organize, search, and rediscover</span> your clothes with smart filters for size, color, brand, and item type. It's not just about convenience - it's about sustainability and helping you make the most of what you already own.</p>
+            </div>
+            <div class="content-image">
+                <img src="../Public/lookbook.png" alt="Lookbook Wardrobe Organization">
+            </div>
         </div>
     </section>
 
     <section class="section">
         <h2 class="section-title">Our Mission</h2>
-        <div class="mission-card">
-            <p>We want to make fashion <span class="highlight">simple, sustainable, and accessible</span> by helping people rediscover their closets and reduce waste.</p>
+        <div class="content-section">
+            <div class="content-image">
+                <img src="../Public/sustain.jpg" alt="Sustainability Mission">
+            </div>
+            <div class="content-text">
+                <p>We want to make fashion <span class="highlight">simple, sustainable, and accessible</span> by helping people rediscover their closets and reduce waste.</p>
+                <br>
+                <p>Our goal is to transform how people interact with their wardrobes. By providing intelligent organization tools, we're not just creating an app - we're building a movement towards more mindful, sustainable fashion consumption.</p>
+            </div>
         </div>
     </section>
 
@@ -207,6 +323,8 @@ $faqs = [
                 <div class="team-member">
                     <img src="<?php echo htmlspecialchars($member['image']); ?>" alt="<?php echo htmlspecialchars($member['name']); ?>">
                     <h3><?php echo htmlspecialchars($member['name']); ?></h3>
+                    <p><?php echo htmlspecialchars($member['role']); ?></p>
+                    <p class="member-bio"><?php echo htmlspecialchars($member['bio']); ?></p>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -214,29 +332,44 @@ $faqs = [
 
     <section class="section">
         <h2 class="section-title">FAQs</h2>
-        <div class="faq-container">
-            <?php foreach($faqs as $faq): ?>
-                <div class="faq-item">
-                    <h3 class="faq-question"><?php echo htmlspecialchars($faq['question']); ?></h3>
-                    <p class="faq-answer"><?php echo htmlspecialchars($faq['answer']); ?></p>
+        <div class="faq-accordion">
+            <?php foreach($faqs as $index => $faq): ?>
+                <div class="faq-item" data-index="<?php echo $index; ?>">
+                    <div class="faq-header">
+                        <h3 class="faq-question"><?php echo htmlspecialchars($faq['question']); ?></h3>
+                        <i class="fas fa-chevron-down faq-toggle"></i>
+                    </div>
+                    <div class="faq-content">
+                        <p><?php echo htmlspecialchars($faq['answer']); ?></p>
+                    </div>
                 </div>
             <?php endforeach; ?>
         </div>
     </section>
 </div>
 
-<footer>
-    <div class="footer-content">
-        <div class="logo">
-            <h2>LOOKBOOK</h2>
-            <p>"Your Closet, Organized Digitally."</p>
-        </div>
-        <div class="contact">
-            <p>Contact Us</p>
-            <p>[email here]</p>
-        </div>
-        <p>&copy; <?php echo date('Y'); ?> Lookbook. All rights reserved.</p>
-    </div>
-</footer>
+<?php renderWaitlistForm(); ?>
+
+<?php include '../components/footer.php'; ?>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(item => {
+            item.querySelector('.faq-header').addEventListener('click', function() {
+                // Toggle active class on clicked item
+                item.classList.toggle('active');
+
+                // Close other open items
+                faqItems.forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+            });
+        });
+    });
+</script>
 </body>
 </html>
