@@ -129,6 +129,7 @@ session_start();
         <a href="../pages/index.php">Home</a>
         <?php if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true): ?>
             <a href="../pages/item_filter_<?php echo $_SESSION['admin'] == 1 ? 'admin' : 'user'; ?>.php">Search Closet</a>
+            <a href="../pages/recommend.php">Recommend</a>
             <a href="../pages/features.php">Features</a>
             <a href="../pages/about-us.php">About Us</a>
             <a href="../pages/logout.php" class="btn-outline">Logout (<?php echo htmlspecialchars($_SESSION['username']); ?>)</a>
