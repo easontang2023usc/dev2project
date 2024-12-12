@@ -29,7 +29,7 @@ if(isLoggedIn()) {
                 position: relative;
                 height: 50vh;
                 background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-                url('/api/placeholder/1200/800');
+                url('../Public/Background Image.png');
                 background-size: cover;
                 background-position: center;
                 display: flex;
