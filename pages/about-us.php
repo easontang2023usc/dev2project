@@ -7,26 +7,32 @@ $team_members = [
     [
         'name' => 'Deniz Yamangl',
         'image' => '../Public/denizpic.jpg',
+        'role' => 'Team Member',  // Added role
+        'bio' => ''  // Added empty bio
     ],
     [
         'name' => 'Denise Sanchez',
         'image' => '../Public/denisepic.jpg',
-
+        'role' => 'Team Member',
+        'bio' => ''
     ],
     [
         'name' => 'Maya Parthasarathy',
         'image' => '../Public/mayapic.png',
-
+        'role' => 'Team Member',
+        'bio' => ''
     ],
     [
         'name' => 'Eason Tang',
         'image' => '../Public/easonpic.jpeg',
-
+        'role' => 'Team Member',
+        'bio' => ''
     ],
     [
         'name' => 'Giovanni Goree',
         'image' => '../Public/giopic.jpg',
-
+        'role' => 'Team Member',
+        'bio' => ''
     ]
 ];
 
@@ -323,8 +329,6 @@ include '../components/waitlist_component.php';
                 <div class="team-member">
                     <img src="<?php echo htmlspecialchars($member['image']); ?>" alt="<?php echo htmlspecialchars($member['name']); ?>">
                     <h3><?php echo htmlspecialchars($member['name']); ?></h3>
-                    <p><?php echo htmlspecialchars($member['role']); ?></p>
-                    <p class="member-bio"><?php echo htmlspecialchars($member['bio']); ?></p>
                 </div>
             <?php endforeach; ?>
         </div>
@@ -373,3 +377,4 @@ include '../components/waitlist_component.php';
 </script>
 </body>
 </html>
+
