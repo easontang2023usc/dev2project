@@ -119,7 +119,6 @@ if (!$item) {
                 <img src="../Public/dataviz.jpeg" alt="Additional Image 1" class="additional-image">
                 <img src="../Public/dataviz2.jpeg" alt="Additional Image 2" class="additional-image">
                 <img src="../Public/dataviz3.jpeg" alt="Additional Image 3" class="additional-image">
-                <img src="../Public/dataviz4.jpeg" alt="Additional Image 4" class="additional-image">
             </div>
         </div>
 
