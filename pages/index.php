@@ -41,14 +41,14 @@ session_start();
             max-width: 1200px;
             margin: 0 auto;
             width: 100%;
-            padding: 0 20px; /* Added padding */
+            padding: 0 20px;
         }
 
         section {
             min-height: auto;
             display: flex;
             align-items: center;
-            padding: 40px 0; /* Reduced padding */
+            padding: 40px 0;
             position: relative;
         }
 
@@ -83,10 +83,30 @@ session_start();
         }
 
         .problem {
-            background-color: #333;
+            background-image: url('../Public/picture 2 home.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: white;
             text-align: center;
             min-height: 100vh;
+            position: relative;
+        }
+
+        .problem::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 1;
+        }
+
+        .problem .container {
+            position: relative;
+            z-index: 2;
         }
 
         .problem h2 {
@@ -100,18 +120,10 @@ session_start();
             margin-bottom: 40px;
         }
 
-        .problem img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-
         .solution {
             background-color: white;
             padding: 80px 0;
             min-height: 100vh;
-
         }
 
         .solution .container {
@@ -137,11 +149,13 @@ session_start();
 
         .solution-image {
             flex: 1;
+            height: 600px;
         }
 
         .solution-image img {
-            max-width: 100%;
-            height: auto;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
@@ -190,25 +204,28 @@ session_start();
 
         .gallery {
             padding: 80px 0;
-            background-color: white;
+            background-image: url('../Public/picture 4 home.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .gallery::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.4);
+            z-index: 1;
         }
 
         .gallery .container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
-        .gallery img {
-            width: 100%;
-            height: 400px;
-            object-fit: cover;
-            border-radius: 15px;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.05);
+            position: relative;
+            z-index: 2;
         }
 
         .footer {
@@ -232,21 +249,17 @@ session_start();
                 padding-right: 0;
             }
 
+            .solution-image {
+                height: 400px;
+            }
+
             section {
                 padding: 40px 0;
-                min-height: auto; /* Allow sections to be their natural height on mobile */
+                min-height: auto;
             }
 
             .features-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .gallery .container {
-                grid-template-columns: 1fr;
-            }
-
-            .gallery img {
-                height: 300px;
             }
         }
     </style>
@@ -260,7 +273,7 @@ session_start();
     <div class="container">
         <h1>Your Personal<br>Digital Closet</h1>
         <p>Organize your wardrobe smarter, dress better</p>
-        <a href="#features" class="get-started">Get Started Today!</a>
+        <a href="signup.php" class="get-started">Get Started Today!</a>
     </div>
 </section>
 
@@ -270,7 +283,6 @@ session_start();
         <p>Struggling to find the right outfit?<br>
             Wasting time searching for specific items?<br>
             Never knowing what you actually own?</p>
-        <img src="/api/placeholder/800/600" alt="Disorganized closet example" loading="lazy">
     </div>
 </section>
 
@@ -281,7 +293,7 @@ session_start();
             <p>Your complete digital wardrobe assistant that helps you organize, search, and style your clothes with ease. Never waste time searching through your closet again.</p>
         </div>
         <div class="solution-image">
-            <img src="/api/placeholder/600/800" alt="Organized digital closet solution" loading="lazy">
+            <img src="../Public/picture 3 home.png" alt="Organized digital closet solution" loading="lazy">
         </div>
     </div>
 </section>
@@ -308,17 +320,7 @@ session_start();
 
 <section id="gallery" class="gallery">
     <div class="container">
-        <?php
-        $gallery_images = array(
-            array("src" => "/api/placeholder/400/400", "alt" => "Organized Wardrobe Example"),
-            array("src" => "/api/placeholder/400/400", "alt" => "Smart Filtering Demo"),
-            array("src" => "/api/placeholder/400/400", "alt" => "Digital Closet Interface")
-        );
-
-        foreach($gallery_images as $image) {
-            echo '<img src="' . htmlspecialchars($image["src"]) . '" alt="' . htmlspecialchars($image["alt"]) . '" loading="lazy">';
-        }
-        ?>
+        <!-- Empty container for background image -->
     </div>
 </section>
 
