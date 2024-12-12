@@ -350,7 +350,6 @@ include '../components/waitlist_component.php';
 
 <?php renderWaitlistForm(); ?>
 
-<?php include '../components/footer.php'; ?>
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
