@@ -55,8 +55,33 @@ session_start();
         .hero {
             min-height: calc(100vh - 60px);
             margin-top: 0;
-            background-color: #f8f9fa;
+            background-image: url('../Public/picture 1 new new.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             text-align: center;
+            position: relative; /* Add this */
+        }
+
+        /* Add overlay */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+            z-index: 1;
+        }
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            color: white; /* Make text white */
+        }
+        /* Ensure text is white */
+        .hero h1, .hero p {
+            color: white;
         }
 
         .hero h1 {
@@ -273,7 +298,7 @@ session_start();
     <div class="container">
         <h1>Your Personal<br>Digital Closet</h1>
         <p>Organize your wardrobe smarter, dress better</p>
-        <a href="signup.php" class="get-started">Get Started Today!</a>
+        <a href="../pages/signup.php" class="get-started">Get Started Today!</a>
     </div>
 </section>
 
