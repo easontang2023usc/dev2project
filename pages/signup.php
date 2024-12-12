@@ -29,7 +29,7 @@ if ($conn->connect_error) {
             position: relative;
             height: 50vh;
             background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)),
-            url('/api/placeholder/1200/800');
+            url('../Public/picture 1 home  new.webp');
             background-size: cover;
             background-position: center;
             display: flex;
