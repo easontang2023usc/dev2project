@@ -66,8 +66,8 @@ function renderWaitlistForm($customTitle = null, $customDescription = null) {
         }
 
         .waitlist-btn {
-            background-color: #a3c7f1;
-            color: black;
+            background-color: #ff69b4;
+            color: white;
             border: none;
             padding: 0.75rem;
             border-radius: 4px;
@@ -77,7 +77,7 @@ function renderWaitlistForm($customTitle = null, $customDescription = null) {
         }
 
         .waitlist-btn:hover {
-            background-color: #5b7ea1;
+            background-color: #f879b8;
         }
 
         .waitlist-message {
@@ -88,7 +88,7 @@ function renderWaitlistForm($customTitle = null, $customDescription = null) {
 
         .waitlist-success {
             background-color: #dff0d8;
-            color: #3c763d;
+            color: #64e66f;
         }
 
         .waitlist-error {

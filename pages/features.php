@@ -44,7 +44,7 @@ include '../components/waitlist_component.php';
         }
 
         .get-started-btn {
-            background-color: #FFD700;
+            background-color: #ff69b4   ;
             color: black;
             padding: 0.8rem 2rem;
             border: none;
@@ -124,7 +124,7 @@ include '../components/waitlist_component.php';
     <div class="hero-content">
         <h1>Unlock Your Wardrobe's Potential</h1>
         <p>We manage your wardrobe so you won't have to outfit in</p>
-        <button class="get-started-btn"> <a href="signup.php">Get started</a></button>
+        <button class="get-started-btn"> <a href="../pages/signup.php">Get started</a></button>
     </div>
 </section>
 
