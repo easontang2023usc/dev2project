@@ -121,7 +121,7 @@ $shoes = $result_shoes->fetch_assoc();
             .button {
                 display: inline-block;
                 padding: 12px 24px;
-                background-color: #4CAF50;
+                background-color: #ff69b4;
                 color: white;
                 text-decoration: none;
                 border-radius: 4px;
@@ -131,7 +131,7 @@ $shoes = $result_shoes->fetch_assoc();
                 margin: 0 10px;
             }
             .button:hover {
-                background-color: #45a049;
+                background-color: #f377b5;
             }
             h1 {
                 color: #333;

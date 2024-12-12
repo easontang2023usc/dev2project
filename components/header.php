@@ -64,20 +64,20 @@ session_start();
 
         .nav-links a:hover,
         .btn:hover {
-            background-color: var(--primary-color);
+            background-color: #ff69b4;
             color: white;
         }
 
         .btn {
-            background-color: var(--primary-color);
+            background-color: #ff69b4;
             color: white;
             font-weight: 600;
         }
 
         .btn-outline {
             background-color: transparent;
-            border: 2px solid var(--primary-color);
-            color: var(--primary-color);
+            border: 2px solid #ff69b4;
+            color: #ff69b4;
         }
 
         .btn-outline:hover {

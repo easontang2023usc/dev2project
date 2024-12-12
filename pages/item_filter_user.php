@@ -122,7 +122,7 @@ if (isset($_GET['item_type_name']) && $_GET['item_type_name'] != 'ALL') {
         }
 
         .apply-filters {
-            background-color: #4CAF50;
+            background-color: #ff69b4;
             color: white;
             padding: 8px 16px;
             border: none;
@@ -132,7 +132,7 @@ if (isset($_GET['item_type_name']) && $_GET['item_type_name'] != 'ALL') {
         }
 
         .apply-filters:hover {
-            background-color: #45a049;
+            background-color: #ce5592;
         }
 
         .results-grid {
@@ -180,7 +180,7 @@ if (isset($_GET['item_type_name']) && $_GET['item_type_name'] != 'ALL') {
             color: #fff;
             border-radius: 4px;
             font-size: 14px;
-            background-color: #4CAF50;
+            background-color: #ff69b4;
             text-align: center;
             width: 100%;
             box-sizing: border-box;
@@ -188,7 +188,7 @@ if (isset($_GET['item_type_name']) && $_GET['item_type_name'] != 'ALL') {
         }
 
         .item-actions a:hover {
-            background-color: #45a049;
+            background-color: #fb7fbd;
         }
         /* Adjust the spacing for item details */
         .item-card h3 {
@@ -229,11 +229,11 @@ if (isset($_GET['item_type_name']) && $_GET['item_type_name'] != 'ALL') {
             color: #fff;
             border-radius: 4px;
             font-size: 14px;
-            background-color: #4CAF50;
+            background-color: #ff69b4;
         }
 
         .item-actions a:hover {
-            background-color: #45a049;
+            background-color: #f879b8;
         }
     </style>
 </head>
