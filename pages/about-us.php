@@ -292,7 +292,7 @@ include '../components/waitlist_component.php';
             <div class="content-text">
                 <p>The idea for The Lookbook came from a frustration we all know too well: <span class="highlight">digging through a disorganized closet, struggling to find the right outfit.</span></p>
                 <br>
-                <p>When we started talking to friends and family, we realized this was a universal problem—forgotten favorite pieces, wasted time, and constant clutter. That's when we set out to create a solution.</p>
+                <p>When we started talking to friends and family, we realized this was a universal problem—forgotten favorite pieces, wasted time, and constant clutter. That's when we set out to create a solution!</p>
                 <br>
                 <p>The <span class="highlight">Lookbook empowers you to organize, search, and rediscover</span> your clothes with smart filters for size, color, brand, and item type. It's not just about convenience - it's about sustainability and helping you make the most of what you already own.</p>
             </div>
