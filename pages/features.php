@@ -115,6 +115,10 @@ session_start();
                 height: 300px;
             }
         }
+        a{
+            color: white;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -125,7 +129,7 @@ session_start();
     <div class="hero-content">
         <h1>Unlock Your Wardrobe's Potential</h1>
         <p>We manage your wardrobe so you won't have to outfit in</p>
-        <button class="get-started-btn">Get started</button>
+        <button class="get-started-btn"> <a href="signup.php">Get started<a/></button>
     </div>
 </section>
 
@@ -135,17 +139,17 @@ session_start();
         [
             'title' => 'Sort & Filter',
             'description' => 'Effortlessly navigate your wardrobe with our sort and filter tools. Find exactly what you need by filtering items by type, color, size, occasion, or custom tags. Our intuitive interface lets you sort visually, making it easy to spot your favorite items or discover hidden gems. With advanced search and quick actions, managing your wardrobe has never been this efficient.',
-            'image' => 'Public/Image 2.png'
+            'image' => '../Public/Image 2.png'
         ],
         [
             'title' => 'Manage',
             'description' => 'Take control of your wardrobe with a streamlined digital catalog. Easily upload images, add details like size, color, and occasion, and track outfit combinations or wear history. Keep tabs on your items\' condition, lifecycle, and even get reminders for neglected pieces. Whether you\'re updating your inventory or planning your next outfit, our tools help you stay organized and intentional about your fashion choices.',
-            'image' => 'Public/Image 3.png'
+            'image' => '../Public/Image 3.png'
         ],
         [
             'title' => 'Recommend',
             'description' => 'Maximize your wardrobe\'s potential with personalized recommendations tailored to your lifestyle. Discover outfit combinations for various occasions, from casual outings to formal events, and get tips on how to make the most of your existing wardrobe. Identify gaps in your collection and receive suggestions for seasonal updates to create a versatile and functional wardrobe.',
-            'image' => 'Public/Image 4.png'
+            'image' => '../Public/Image 4.png'
         ]
     ];
 
