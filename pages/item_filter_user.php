@@ -31,8 +31,13 @@ $colors_result = $conn->query($colors_query);
 $brands_result = $conn->query($brands_query);
 $types_result = $conn->query($types_query);
 
+// Pagination settings
+$items_per_page = 10;
+$current_page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$offset = ($current_page - 1) * $items_per_page;
+
 // Base query
-$sql = "SELECT 
+$base_sql = "SELECT 
     ci.item_id,
     ci.item_name,
     ci.images,
@@ -48,33 +53,54 @@ LEFT JOIN Brands b ON ci.brand_id = b.brand_id
 LEFT JOIN Item_Types it ON ci.item_type_id = it.item_type_id
 WHERE 1=1";
 
+$count_sql = "SELECT COUNT(*) as total FROM Clothing_Items ci WHERE 1=1";
+
 $params = array();
 $types = "";
 
 // Add filters based on selections
 if (isset($_GET['size']) && $_GET['size'] != 'ALL') {
-    $sql .= " AND ci.size_id = ?";
+    $base_sql .= " AND ci.size_id = ?";
+    $count_sql .= " AND ci.size_id = ?";
     $params[] = $_GET['size'];
     $types .= "i";
 }
 
 if (isset($_GET['color']) && $_GET['color'] != 'ALL') {
-    $sql .= " AND ci.color_id = ?";
+    $base_sql .= " AND ci.color_id = ?";
+    $count_sql .= " AND ci.color_id = ?";
     $params[] = $_GET['color'];
     $types .= "i";
 }
 
 if (isset($_GET['brand']) && $_GET['brand'] != 'ALL') {
-    $sql .= " AND ci.brand_id = ?";
+    $base_sql .= " AND ci.brand_id = ?";
+    $count_sql .= " AND ci.brand_id = ?";
     $params[] = $_GET['brand'];
     $types .= "i";
 }
 
 if (isset($_GET['item_type_name']) && $_GET['item_type_name'] != 'ALL') {
-    $sql .= " AND ci.item_type_id = ?";
+    $base_sql .= " AND ci.item_type_id = ?";
+    $count_sql .= " AND ci.item_type_id = ?";
     $params[] = $_GET['item_type_name'];
     $types .= "i";
 }
+
+// Get total number of items for pagination
+$count_stmt = $conn->prepare($count_sql);
+if (!empty($params)) {
+    $count_stmt->bind_param($types, ...$params);
+}
+$count_stmt->execute();
+$total_items = $count_stmt->get_result()->fetch_assoc()['total'];
+$total_pages = ceil($total_items / $items_per_page);
+
+// Add pagination to the main query
+$base_sql .= " LIMIT ? OFFSET ?";
+$params[] = $items_per_page;
+$params[] = $offset;
+$types .= "ii";
 ?>
 
 <!DOCTYPE html>
@@ -235,6 +261,37 @@ if (isset($_GET['item_type_name']) && $_GET['item_type_name'] != 'ALL') {
         .item-actions a:hover {
             background-color: #f879b8;
         }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .pagination a, .pagination span {
+            padding: 8px 16px;
+            text-decoration: none;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            color: #333;
+        }
+
+        .pagination a:hover {
+            background-color: #f0f0f0;
+        }
+
+        .pagination .current {
+            background-color: #ff69b4;
+            color: white;
+            border-color: #ff69b4;
+        }
+
+        .pagination .disabled {
+            color: #999;
+            pointer-events: none;
+        }
+
     </style>
 </head>
 
@@ -308,7 +365,7 @@ if (isset($_GET['item_type_name']) && $_GET['item_type_name'] != 'ALL') {
                 <?php endwhile; ?>
             </select>
         </div>
-
+        <input type="hidden" name="page" value="1">
         <button type="submit" class="apply-filters">Apply Filters</button>
     </form>
 
@@ -337,10 +394,10 @@ if (isset($_GET['item_type_name']) && $_GET['item_type_name'] != 'ALL') {
 
     <div class="results-grid">
         <?php
-        $stmt = $conn->prepare($sql);
+        $stmt = $conn->prepare($base_sql);
 
         if ($stmt === false) {
-            die('Prepare failed: ' . $conn->error . ' (SQL: ' . $sql . ')');
+            die('Prepare failed: ' . $conn->error . ' (SQL: ' . $base_sql . ')');
         }
 
         if (!empty($params)) {
@@ -378,6 +435,39 @@ if (isset($_GET['item_type_name']) && $_GET['item_type_name'] != 'ALL') {
             </div>
         <?php endwhile; ?>
     </div>
+    <?php if ($total_pages > 1): ?>
+        <div class="pagination">
+            <?php
+            // Build the base URL for pagination links
+            $params = $_GET;
+            unset($params['page']); // Remove existing page from params
+            $url = '?' . http_build_query($params) . '&page=';
+
+            // Previous link
+            if ($current_page > 1) {
+                echo '<a href="' . $url . ($current_page - 1) . '">&laquo; Previous</a>';
+            } else {
+                echo '<span class="disabled">&laquo; Previous</span>';
+            }
+
+            // Page numbers
+            for ($i = max(1, $current_page - 2); $i <= min($total_pages, $current_page + 2); $i++) {
+                if ($i == $current_page) {
+                    echo '<span class="current">' . $i . '</span>';
+                } else {
+                    echo '<a href="' . $url . $i . '">' . $i . '</a>';
+                }
+            }
+
+            // Next link
+            if ($current_page < $total_pages) {
+                echo '<a href="' . $url . ($current_page + 1) . '">Next &raquo;</a>';
+            } else {
+                echo '<span class="disabled">Next &raquo;</span>';
+            }
+            ?>
+        </div>
+    <?php endif; ?>
 </div>
 
 <?php
